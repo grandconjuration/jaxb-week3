@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.example.org/PostcodeRequest" xmlns:tns="http://www.example.org/PostcodeRequest"
+	elementFormDefault="qualified">
+	<xs:element name="request">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="postcode">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:pattern value="[1-9][0-9]{3}[A-Z]{2}" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:choice>
+					<xs:element name="huis">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="huisnr">
+									<xs:simpleType>
+										<xs:restriction base="xs:positiveInteger">
+											<xs:minInclusive value="1" />
+											<xs:maxExclusive value="9999" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="huisnrToevoeging" type="xs:string"
+									minOccurs="0" />
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="postbus">
+						<xs:simpleType>
+							<xs:restriction base="xs:positiveInteger">
+								<xs:minInclusive value="1" />
+								<xs:maxExclusive value="9999" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
